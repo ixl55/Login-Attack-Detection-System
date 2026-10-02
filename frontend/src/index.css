@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic tokens. Light values first, dark overrides under .dark. */
+:root {
+  color-scheme: light;
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --surface-2: #f1f4f9;
+  --border: #e2e7ef;
+  --text: #0f172a;
+  --text-2: #475569;
+  --muted: #64748b;
+  --primary: #0e7490;
+  --primary-soft: rgb(14 116 144 / 0.1);
+  --grid: #e5e9f0;
+
+  /* Chart series (validated: scripts/validate_palette.js, light on #ffffff) */
+  --series-success: #2a78d6;
+  --series-failed: #e34948;
+
+  /* Status / severity — always paired with an icon or label */
+  --sev-critical: #d03b3b;
+  --sev-high: #ec835a;
+  --sev-medium: #fab219;
+  --sev-low: #7b8aa6;
+  --ok: #0ca30c;
+  --ok-text: #006300;
+  --bad-text: #b91c1c;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #0b1120;
+  --surface: #111a2e;
+  --surface-2: #17223a;
+  --border: #1f2a44;
+  --text: #e2e8f0;
+  --text-2: #b4c0d3;
+  --muted: #8592a8;
+  --primary: #22d3ee;
+  --primary-soft: rgb(34 211 238 / 0.12);
+  --grid: #1c2740;
+
+  /* validated dark on #111a2e */
+  --series-success: #3987e5;
+  --series-failed: #e66767;
+
+  --ok-text: #3ccf5a;
+  --bad-text: #f38787;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-critical: var(--sev-critical);
+  --color-high: var(--sev-high);
+  --color-medium: var(--sev-medium);
+  --color-low: var(--sev-low);
+  --color-ok: var(--ok);
+  --color-ok-text: var(--ok-text);
+  --color-bad-text: var(--bad-text);
+  --color-success-series: var(--series-success);
+  --color-failed-series: var(--series-failed);
+
+  --font-sans: 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --animate-flash: flash 1.6s ease-out;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes flash {
+  0% { background-color: var(--primary-soft); }
+  100% { background-color: transparent; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(12 163 12 / 0.55); }
+  50% { box-shadow: 0 0 0 5px rgb(12 163 12 / 0); }
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle SOC grid texture behind the dark UI */
+.dark body {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgb(148 163 184 / 0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

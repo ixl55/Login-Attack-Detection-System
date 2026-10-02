@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/dashboard/shield.svg" />
+    <title>LADS — Login Attack Detection</title>
+    <script>
+      // Apply saved theme/language before first paint to avoid a flash.
+      try {
+        var t = localStorage.getItem('lads.theme'); var l = localStorage.getItem('lads.lang');
+        if (t === 'light') document.documentElement.classList.remove('dark');
+        if (l === 'en') { document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

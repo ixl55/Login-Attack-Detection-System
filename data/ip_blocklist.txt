@@ -1,0 +1,8 @@
+# Known-bad IPs and CIDR ranges, one per line. Comments start with '#'.
+# The file is re-read automatically when it changes.
+#
+# Documentation ranges (RFC 5737) used by scripts/simulate_attacks.py:
+203.0.113.0/24
+198.51.100.66
+# IPv6 example (RFC 3849 documentation prefix)
+2001:db8:bad::/48
